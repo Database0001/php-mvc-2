@@ -61,6 +61,20 @@ class Route
         }
     }
 
+    public static function resource()
+    {
+        $args = func_get_args();
+
+        return self::main($args[0], [$args[1], 'index'], ['GET']);
+        return self::main("$args[0]/create", [$args[1], 'create'], ['GET']);
+        return self::main("$args[0]/{id}", [$args[1], 'show'], ['GET']);
+        return self::main("$args[0]/{id}/edit", [$args[1], 'edit'], ['GET']);
+
+        return self::main($args[0], [$args[1], 'store'], ['POST']);
+        return self::main("$args[0]/{id}", [$args[1], 'update'], ['PUT', 'PATCH']);
+        return self::main("$args[0]/{id}", [$args[1], 'destroy'], ['DELETE']);
+    }
+
     public static function get()
     {
         $args = func_get_args();
