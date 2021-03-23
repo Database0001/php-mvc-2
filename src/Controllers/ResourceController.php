@@ -6,9 +6,7 @@ class ResourceController
 {
     public function index()
     {
-        echo view('test', [
-            'test' => "selam"
-        ]);
+        echo view('test');
     }
 
     public function create()
