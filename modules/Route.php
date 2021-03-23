@@ -9,6 +9,7 @@ class Route
 
     private static function main($url, $callback, $methods = [])
     {
+
         if (self::$called == 1 || !in_array(request('_method') ?? $_SERVER['REQUEST_METHOD'], $methods))
             return;
 
@@ -45,7 +46,6 @@ class Route
                     break;
 
                 case "array":
-
                     $file = base_path("\\$callback[0].php");
                     include($file);
                     $class = new $callback[0]();
@@ -65,14 +65,17 @@ class Route
     {
         $args = func_get_args();
 
-        return self::main($args[0], [$args[1], 'index'], ['GET']);
-        return self::main("$args[0]/create", [$args[1], 'create'], ['GET']);
-        return self::main("$args[0]/{id}", [$args[1], 'show'], ['GET']);
-        return self::main("$args[0]/{id}/edit", [$args[1], 'edit'], ['GET']);
+        self::main($args[0], [$args[1], 'index'], ['GET']);
+        self::main("$args[0]/create", [$args[1], 'create'], ['GET']);
+        self::main("$args[0]/{id}", [$args[1], 'show'], ['GET']);
+        self::main("$args[0]/{id}/edit", [$args[1], 'edit'], ['GET']);
 
-        return self::main($args[0], [$args[1], 'store'], ['POST']);
-        return self::main("$args[0]/{id}", [$args[1], 'update'], ['PUT', 'PATCH']);
-        return self::main("$args[0]/{id}", [$args[1], 'destroy'], ['DELETE']);
+        self::main($args[0], [$args[1], 'store'], ['POST']);
+        self::main("$args[0]/{id}", [$args[1], 'update'], ['PUT', 'PATCH']);
+        self::main("$args[0]/{id}", [$args[1], 'destroy'], ['DELETE']);
+
+
+        return;
     }
 
     public static function get()
