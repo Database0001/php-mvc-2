@@ -72,4 +72,22 @@ class Route
         $args = func_get_args();
         return self::main($args[0], $args[1], ['POST']);
     }
+
+    public static function put()
+    {
+        $args = func_get_args();
+        return self::main($args[0], $args[1], ['PUT']);
+    }
+
+    public static function patch()
+    {
+        $args = func_get_args();
+        return self::main($args[0], $args[1], ['PATCH']);
+    }
+
+    public static function delete()
+    {
+        $args = func_get_args();
+        return self::main($args[0], $args[1], ['DELETE']);
+    }
 }
