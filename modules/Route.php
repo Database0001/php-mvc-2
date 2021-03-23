@@ -45,13 +45,11 @@ class Route
                     break;
 
                 case "array":
+
                     $file = base_path("\\$callback[0].php");
                     include($file);
-                    
-                    $class = @end(explode("\\", $callback[0]));
-                    $class = new $class();
-
-
+                    $class = new $callback[0]();
+                    $return = call_user_func_array([$class, $callback[1]], $params);
                     break;
 
                 default:
