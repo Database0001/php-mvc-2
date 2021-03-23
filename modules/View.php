@@ -35,7 +35,9 @@ function template($file, $args)
     ob_clean();
     ob_end_flush();
 
-
+    foreach ($args as $key => $val) {
+        $fileContent = str_replace(["{{ $$key }}", "{!! $$key !!}"], [htmlspecialchars($val), $val], $fileContent);
+    }
 
     echo $fileContent;
 }
