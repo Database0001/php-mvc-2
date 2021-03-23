@@ -7,6 +7,7 @@ class Route
 
     static $called = 0;
 
+    
     private static function main($url, $callback, $methods = [])
     {
 
