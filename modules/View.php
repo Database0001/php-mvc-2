@@ -1,13 +1,27 @@
 <?php
 
-function view($view, $args = [], $ext = "php")
+function view($view, $args = [], $_data = [])
 {
 
-    $view = str_replace('.', '\\', $view);
-    $file = base_path("\src\Views\\$view.f.$ext");
+    $data = [
+        'ext' => 'php',
+        'path' => 'Views',
+        'can_abort' => 1
+    ];
+
+    foreach ($_data as $key => $val) {
+        $data[$key] = $val;
+    }
+
+    $view = str_replace('.', '/', $view);
+    $file = base_path("/src/" . $data['path'] . "/$view.f." . $data['ext']);
 
     if (file_exists($file))
         return template($file, $args);
+
+
+    if ($data['can_abort'] == 1)
+        abort(404, ['message' => "Böyle bir view bulunamadı."]);
 }
 
 function template($file, $args)
@@ -20,6 +34,7 @@ function template($file, $args)
     $fileContent = ob_get_contents();
     ob_clean();
     ob_end_flush();
+
 
 
     echo $fileContent;

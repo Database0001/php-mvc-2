@@ -6,7 +6,7 @@ class ResourceController
 {
     public function index()
     {
-        echo view('modules.index');
+        echo view('testt');
     }
 
     public function create()

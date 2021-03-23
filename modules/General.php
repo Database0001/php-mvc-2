@@ -15,8 +15,21 @@ function url($url = null)
     return $_SERVER['REQUEST_URI'] . $url;
 }
 
-function abort($code)
+function abort($code, $_data = [])
 {
+
+    $data = [
+        'message' => null,
+        'view' => 1
+    ];
+
+    foreach ($_data as $key => $val) {
+        $data[$key] = $val;
+    }
+
+    if ($data['view'])
+        echo view("errors.$code", ['message' => $data['message']], ['can_abort' => 0]);
+
     die(http_response_code($code));
 }
 

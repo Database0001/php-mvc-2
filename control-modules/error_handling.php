@@ -3,5 +3,9 @@
 use Modules\Route;
 
 if (Route::$called == 0) {
-    abort(404);
+    $code = 404;
+}
+
+if (isset($code)) {
+    abort($code);
 }
