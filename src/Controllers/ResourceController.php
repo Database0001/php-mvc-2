@@ -2,20 +2,20 @@
 
 namespace Src\Controllers;
 
-use Modules\DB;
 use Src\Models\User;
 
 class ResourceController
 {
+    public function __construct()
+    {
+        $this->userModel = new User(0);
+    }
+
     public function index()
     {
-        
-        $data = new User(0);
-
         print_r(
-            $data->where([['id', '=', 1]])->get()
+            $this->userModel->get()
         );
-
     }
 
     public function create()

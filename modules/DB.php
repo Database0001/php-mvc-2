@@ -45,7 +45,7 @@ class DB
     public function build()
     {
 
-        foreach ($this->data as $key => $val) {
+        foreach ($this->data ?? [] as $key => $val) {
             if ($key == "where") {
                 $val = "WHERE " . implode(' AND ', $val);
             }
