@@ -26,6 +26,7 @@ function view($view, $args = [], $_data = [])
 
 function template($file, $args)
 {
+    global $db;
 
     extract($args);
 

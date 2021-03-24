@@ -4,7 +4,9 @@ set_time_limit(0);
 define('START', microtime(true));
 
 $dirs = [
-    '../modules/*.php'
+    '../modules/*.php',
+    '../Abstracts/*.php',
+    '../src/Models/*.php',
 ];
 
 foreach ($dirs as $dir) {
@@ -13,6 +15,8 @@ foreach ($dirs as $dir) {
         include($file);
     }
 }
+
+include(base_path('/control-modules/db_connections.php'));
 
 include(base_path('/route.php'));
 include(base_path('/control-modules/error_handling.php'));
