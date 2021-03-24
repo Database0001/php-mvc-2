@@ -14,7 +14,7 @@ class ResourceController
     public function index()
     {
 
-        return view('test', ['users' => $this->userModel->get()]);
+        return view('testt', ['users' => $this->userModel->get()]);
 
         return $this->userModel->where([['id', '=', 1]])->limit(0, 10)->get();
     }
