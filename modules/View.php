@@ -37,6 +37,12 @@ function template($file, $args)
     ob_end_flush();
 
     foreach ($args as $key => $val) {
+
+        $type = gettype($val);
+        if ($type == "array" || $type == "object") {
+            $val = json_encode($val, JSON_UNESCAPED_UNICODE);
+        }
+
         $fileContent = str_replace(["{{ $$key }}", "{!! $$key !!}"], [htmlspecialchars($val), $val], $fileContent);
     }
 
