@@ -58,7 +58,7 @@ const callbacks = {
 
 $.ajaxSetup({
     error: function (xhr) {
-        alert("Konsola bak hata var");
+        //alert("Konsola bak hata var");
         console.log(xhr);
     }
 });

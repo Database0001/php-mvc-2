@@ -1,9 +1,11 @@
 <?php
 set_time_limit(0);
+session_start();
 
 define('START', microtime(true));
 
 $dirs = [
+    '../src/Middleware/*.php',
     '../modules/*.php',
     '../Abstracts/*.php',
     '../src/Models/*.php',

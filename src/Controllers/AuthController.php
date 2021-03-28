@@ -2,6 +2,8 @@
 
 namespace Src\Controllers;
 
+use Modules\Auth;
+
 class AuthController
 {
     public function signin()
@@ -11,8 +13,16 @@ class AuthController
             "password" => ['required']
         ]);
 
-        
+        $return = [
+            'response' => 0
+        ];
 
-        return response('json', $valid);
+        if (Auth::attempt([['email', "=", $valid['email']], ['password', "=", $valid['password']]])) {
+            $return['response'] = 1;
+        } else {
+            $return['message'] = "E-mail veya şifre yanlış.";
+        }
+
+        return response('json', $return);
     }
 }

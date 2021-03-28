@@ -106,6 +106,19 @@ function response($type, $data = [])
     return $data;
 }
 
+
+function middleware($middleware, $callback)
+{
+    $middleware = "Src\Middleware\Middleware_" . $middleware;
+    $class = new $middleware();
+
+    if ($class->return) {
+        $callback();
+    } else {
+        //redirect($class->redirect);
+    }
+}
+
 function validator($array, $valid = [])
 {
     $data = [];
