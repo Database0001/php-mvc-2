@@ -53,6 +53,11 @@ function request($name = null)
     return $name ? @$_REQUEST[$name] : $_REQUEST;
 }
 
+function deleteSession($name)
+{
+    unset($_SESSION[$name]);
+}
+
 function session()
 {
 
@@ -76,4 +81,82 @@ function session()
     }
 
     return false;
+}
+
+function redirect($url = "/")
+{
+    header("Location: $url");
+    exit;
+}
+
+function back()
+{
+    return redirect($_SERVER['HTTP_REFERER']);
+}
+
+function response($type, $data = [])
+{
+    switch ($type) {
+        case "json":
+            header("Content-Type: application/json");
+            $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+            break;
+    }
+
+    return $data;
+}
+
+function validator($array, $valid = [])
+{
+    $data = [];
+    $hard_error = 0;
+
+    $errors = [];
+
+    foreach ($array as $key => $row) {
+
+        if (isset($valid[$key])) {
+            $types = $valid[$key];
+
+            $e = 1;
+
+            foreach ($types as $attr => $type) {
+                $type = explode(':', $type);
+
+                switch ($type[0]) {
+                    case "required":
+
+                        if (empty($row)) {
+                            $hard_error = 1;
+                            $errors[] = "$key boş bırakılamaz!";
+                        }
+
+                        break;
+
+                    case "email":
+
+                        if (!filter_var($row, FILTER_VALIDATE_EMAIL)) {
+                            $hard_error = 1;
+                            $errors[] = "$key geçersiz email tipi!";
+                        }
+
+                        break;
+
+                    default:
+                        $errors[] = "Böyle bir tip yok.";
+                }
+            }
+
+            if ($e)
+                $data[$key] = $row;
+        }
+    }
+
+    if (!$hard_error) {
+        return $data;
+    } else {
+        session(['errors' => $errors]);
+        echo response('json', ["errors" => $errors]);
+        abort(400);
+    }
 }
