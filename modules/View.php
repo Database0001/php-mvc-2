@@ -4,7 +4,7 @@ function view($view, $args = [], $_data = [])
 {
 
     $data = [
-        'ext' => 'php',
+        'ext' => 'f.php',
         'path' => 'Views',
         'can_abort' => 1
     ];
@@ -14,7 +14,7 @@ function view($view, $args = [], $_data = [])
     }
 
     $view = str_replace('.', '/', $view);
-    $file = base_path("/src/" . $data['path'] . "/$view.f." . $data['ext']);
+    $file = base_path("/src/" . $data['path'] . "/$view." . $data['ext']);
 
     if (file_exists($file))
         return template($file, $args);

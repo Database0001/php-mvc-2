@@ -14,9 +14,11 @@ class ResourceController
     public function index()
     {
 
-        return view('test', [
-            'users' => $this->userModel->get()
-        ]);
+        return "index";
+
+        // return view('test', [
+        //     'users' => $this->userModel->get()
+        // ]);
 
         // return
         //     $this->userModel->where([
