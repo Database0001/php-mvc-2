@@ -48,20 +48,23 @@ function SToA(is) {
     return arr;
 }
 
-const callbacks = {
-    signin: (is, e) => {
-        let me = $(is);
-
-        console.log(e);
-    }
-};
-
 $.ajaxSetup({
     error: function (xhr) {
         //alert("Konsola bak hata var");
         console.log(xhr);
     }
 });
+
+const callbacks = {
+    signin: (is, e) => {
+        let me = $(is);
+        if (e.response) {
+            location.href = "/";
+        } else {
+            alert(e.message);
+        }
+    }
+};
 
 $('[request-form]').on('submit', function (e) {
     e.preventDefault();
