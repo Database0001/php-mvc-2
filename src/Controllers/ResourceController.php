@@ -14,24 +14,24 @@ class ResourceController
     public function index()
     {
 
-        return
-            $this->userModel->where([
-                ['id', '=', 1]
-            ])->update([
-                "username" => "testt"
-            ]);
-
-        return
-            $this->userModel->create([
-                'username' => "sa",
-                'email' => "mustafaomere@gmail.com"
-            ]);
-
         return view('test', ['users' => $this->userModel->get()]);
 
-        return $this->userModel->where([
-            ['id', '=', 1]
-        ])->limit(0, 10)->get();
+        // return
+        //     $this->userModel->where([
+        //         ['id', '=', 1]
+        //     ])->update([
+        //         "username" => "testt"
+        //     ]);
+
+        // return
+        //     $this->userModel->create([
+        //         'username' => "sa",
+        //         'email' => "mustafaomere@gmail.com"
+        //     ]);
+
+        // return $this->userModel->where([
+        //     ['id', '=', 1]
+        // ])->limit(0, 10)->get();
     }
 
     public function create()
