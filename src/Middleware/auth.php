@@ -2,7 +2,7 @@
 
 namespace Src\Middleware;
 
-class Middleware_auth
+class auth
 {
 
     public $return;

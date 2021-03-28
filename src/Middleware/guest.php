@@ -2,7 +2,7 @@
 
 namespace Src\Middleware;
 
-class Middleware_guest
+class guest
 {
 
     public $return;

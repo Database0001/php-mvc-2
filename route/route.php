@@ -4,10 +4,11 @@ use Src\Controllers\TestController;
 use Modules\Route;
 use Src\Controllers\AuthController;
 use Src\Controllers\ResourceController;
+use Src\Middleware\guest;
 
 // "/" url everytime must set endest. 
 
-middleware('guest', function () {
+middleware(guest::class, function () {
     Route::get('/auth/signin', function () {
         return view("pages.auth.signin");
     });

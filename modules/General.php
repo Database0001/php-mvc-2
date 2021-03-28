@@ -109,7 +109,6 @@ function response($type, $data = [])
 
 function middleware($middleware, $callback)
 {
-    $middleware = "Src\Middleware\Middleware_" . $middleware;
     $class = new $middleware();
 
     if ($class->return) {
