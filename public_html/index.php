@@ -18,7 +18,7 @@ foreach ($dirs as $dir) {
 
 include(base_path('/control-modules/db_connections.php'));
 
-include(base_path('/route.php'));
+include(base_path('/route/route.php'));
 include(base_path('/control-modules/error_handling.php'));
 
 define('FINISH', microtime(true));
