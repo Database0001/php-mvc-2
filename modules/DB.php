@@ -2,8 +2,6 @@
 
 namespace Modules;
 
-use PDO;
-
 class DB
 {
     public $db;
@@ -19,11 +17,6 @@ class DB
     {
         $this->db = $db;
         $this->ezPDO = new ezPDO($db);
-    }
-
-    public static function connect($dbname, $host = "localhost", $user = "root", $password = null)
-    {
-        return new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $password);
     }
 
     public function table($table)

@@ -1,7 +1,7 @@
 <?php
 
-use Modules\DB;
+use Modules\ezPDO;
 
 $db = [];
 
-$db[] = DB::connect('test-mvc');
+$db[] = ezPDO::connect('test-mvc');

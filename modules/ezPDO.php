@@ -14,6 +14,11 @@ class ezPDO
         $this->db = $db;
     }
 
+    public static function connect($dbname, $host = "localhost", $user = "root", $password = null)
+    {
+        return new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $password);
+    }
+
     public function exec($sql, $data = [])
     {
         try {
