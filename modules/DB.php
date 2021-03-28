@@ -88,7 +88,7 @@ class DB
         if ($ex)
             return $this->ezPDO->read("SELECT * FROM $this->table " . $where_, $this->params);
 
-        return false;
+        return [];
     }
 
     public function get($fields = "*")
