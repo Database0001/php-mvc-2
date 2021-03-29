@@ -25,6 +25,10 @@ include(base_path('/control-modules/error_handling.php'));
 
 define('FINISH', microtime(true));
 
+// print_r(
+//     $_SESSION
+// );
+
 // if (session('errors')) {
 //     deleteSession('errors');
 // }
