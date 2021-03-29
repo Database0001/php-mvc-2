@@ -14,13 +14,32 @@ class Auth
             return false;
 
         $model = new User(0);
-        $user = $model->where($arr)->get();
 
+        return self::login($model->where($arr)->get()[0] ?? []);
+
+        return 0;
+    }
+
+    public static function login($user = [])
+    {
         if (@$user['id']) {
             session(['uid' => $user['id']]);
             return 1;
         }
+    }
 
-        return 0;
+    public static function logout()
+    {
+        return deleteSession('uid');
+    }
+
+    public static function user()
+    {
+        if (!session('uid'))
+            return false;
+
+        $model = new User(0);
+
+        return $model->where([['id', '=', session('uid')]])->get()[0] ?? false;
     }
 }

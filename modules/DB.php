@@ -94,6 +94,6 @@ class DB
     public function get($fields = "*")
     {
         $this->sql = "SELECT $fields FROM $this->table $this->sql";
-        return $this->ezPDO->read($this->build(), $this->params);
+        return $this->ezPDO->read($this->build(), $this->params, 'all');
     }
 }
