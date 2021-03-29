@@ -18,6 +18,7 @@ middleware(guest::class, function () {
 
     Route::post('/auth/signin', [AuthController::class, 'signin']);
 
+
     Route::get('/auth/signup', function () {
         return view("pages.auth.signup");
     });
@@ -35,8 +36,5 @@ middleware(MiddlewareAuth::class, function () {
 Route::resource('/resource', ResourceController::class);
 
 Route::get('/', function () {
-
-    $username = @Auth::user()['username'];
-
-    echo "Hoşgeldin " . (($username ? $username . " <a href='/auth/logout'>Çıkış yap</a>" : null) ?? "Ziyaretçi") . ".";
+    return view('pages.home.index');
 });

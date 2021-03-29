@@ -2,7 +2,6 @@
 
 function view($view, $args = [], $_data = [])
 {
-
     $data = [
         'ext' => 'f.php',
         'path' => 'Views',

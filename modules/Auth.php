@@ -7,6 +7,14 @@ use Src\Models\User;
 class Auth
 {
 
+    public static function check()
+    {
+        if (session('uid')) {
+            return true;
+        }
+        return false;
+    }
+
     public static function attempt($arr = [])
     {
 

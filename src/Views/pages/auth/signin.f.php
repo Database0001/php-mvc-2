@@ -1,10 +1,6 @@
 <?= view('layouts.header', ['title' => "Giriş yap"]) ?>
 
 <style>
-    html,
-    body {
-        height: 90%;
-    }
 
     body {
         display: flex;
@@ -18,7 +14,7 @@
     }
 </style>
 
-<main class="form-signin">
+<main class="form-signin mt-5">
     <form method="POST" class="text-center" request-form="auth">
         <h1 class="h3 mb-3 fw-normal">Giriş yap</h1>
 
