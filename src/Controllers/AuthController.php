@@ -27,7 +27,7 @@ class AuthController
             'response' => 0
         ];
 
-        if (Auth::init()->attempt([['username', "=", $valid['username']], ['password', "=", Crypter::encode($valid['password'])]])) {
+        if (auth()->attempt([['username', "=", $valid['username']], ['password', "=", Crypter::encode($valid['password'])]])) {
             $return['response'] = 1;
         } else {
             $return['message'] = "E-mail veya şifre yanlış.";
@@ -54,7 +54,7 @@ class AuthController
             "password" => Crypter::encode($valid['password'])
         ]);
 
-        Auth::init()->login($user);
+        auth()->login($user);
 
         return response('json', $return);
     }

@@ -28,7 +28,7 @@ use Modules\Auth;
                 <div class="collapse navbar-collapse" id="navbarsExample09">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <?php if (Auth::init()->check()) { ?>
+                        <?php if (auth()->check()) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('auth/logout') ?>">Çıkış yap</a>
                             </li>

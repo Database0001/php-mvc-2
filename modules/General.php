@@ -1,5 +1,6 @@
 <?php
 
+use Modules\Auth;
 use Modules\ezPDO;
 
 function base_path($url = null)
@@ -108,6 +109,10 @@ function response($type, $data = [])
     return $data;
 }
 
+function auth()
+{
+    return Auth::init();
+}
 
 function middleware($middleware, $callback)
 {
