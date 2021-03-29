@@ -3,7 +3,6 @@
 namespace Src\Controllers;
 
 use App\Helpers\Crypter;
-use Modules\Auth;
 use Src\Models\User;
 
 class AuthController

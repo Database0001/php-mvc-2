@@ -35,4 +35,4 @@ define('FINISH', microtime(true));
 //     deleteSession('errors');
 // }
 
-// echo "<br><br>Bitiş süresi: " . (FINISH - START);
+//echo "<br><br>Bitiş süresi: " . (FINISH - START) . "ms";
