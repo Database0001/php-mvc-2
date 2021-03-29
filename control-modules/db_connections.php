@@ -3,5 +3,8 @@
 use Modules\ezPDO;
 
 $db = [];
-
-$db[] = ezPDO::connect('test-mvc');
+try {
+    $db[] = ezPDO::connect('test-mvc');
+} catch (Exception $e) {
+    abort(500, ['message' => "Veritabanı bağlantısı başarısız."]);
+}

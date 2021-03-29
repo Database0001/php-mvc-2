@@ -18,7 +18,6 @@ foreach ($dirs as $dir) {
     }
 }
 
-
 include(base_path('/control-modules/db_connections.php'));
 
 include(base_path('/route/route.php'));

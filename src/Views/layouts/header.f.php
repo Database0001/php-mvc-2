@@ -45,3 +45,4 @@ use Modules\Auth;
                 </div>
             </div>
         </nav>
+        <div id="notification"></div>

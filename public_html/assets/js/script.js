@@ -1,3 +1,5 @@
+let cache = {};
+
 function StrToUtf8(str) {
     return str
 
@@ -50,10 +52,11 @@ function SToA(is) {
 
 
 $.dos = {
-    alert: (status, text) => {
-        $('body').prepend(`
-            <div class=" col-12 position-absolute top-0 p-3 cursor-pointer" onclick="this.remove();">
-                <div class="alert alert-${status}">
+    alert: (status, text, absolute = 0) => {
+        let list = $('#notification');
+        list.append(`
+            <div class="${absolute ? "position-absolute top-1" : ""} mt-2 cursor-pointer" style="z-index: 1; opacity: .9; width: 90%; margin-left: 5%;" onclick="this.remove();">
+                <div class="col-12 alert alert-${status}" style="padding: 11px 0px 1px 16px !important; border: none;">
                     <strong>${status}!</strong>
                     <p>
                         ${text}
@@ -61,6 +64,13 @@ $.dos = {
                 </div>
             </div>
         `);
+
+        let last = $([...list.children()].pop());
+
+        last.fadeOut(2500, function () {
+            this.remove();
+        });
+
     },
     redirect: (url = "/", timeSec = 0) => {
         setTimeout(() => {
@@ -77,9 +87,10 @@ $.dos = {
     },
 
     btnUnSpin: function (is, timeSec = 0) {
+        let that = $(is);
         setTimeout(function () {
-            $(is).find('spinner').remove();
-            $(is).removeAttr('disabled');
+            that.find('spinner').remove();
+            that.removeAttr('disabled');
         }, (timeSec * 1000));
     },
 
@@ -89,12 +100,22 @@ $.dos = {
     }
 };
 
-$.ajaxSetup({
-    error: function (xhr) {
-        //alert("Konsola bak hata var");
-        console.log(xhr);
-    }
-});
+
+const error_callback = (xhr) => {
+    let errors = xhr.responseJSON.errors;
+    let code = xhr.status;
+
+    errors.forEach(function (item, index) {
+        $.dos.alert('danger', item);
+    });
+
+    // for (let index of Object.keys(errors)) {
+    //     let item = errors[index];
+
+
+    // }
+
+};
 
 const callbacks = {
     auth: (is, e) => {
@@ -106,6 +127,14 @@ const callbacks = {
         }
     }
 };
+
+
+$.ajaxSetup({
+    error: function (xhr) {
+        return error_callback(xhr);
+    }
+});
+
 
 $('[request-form]').on('submit', function (e) {
     e.preventDefault();
@@ -127,6 +156,10 @@ $('[request-form]').on('submit', function (e) {
         success: function (e) {
             $.dos.btnUnSpin(btn);
             return callbacks[me.attr('request-form')](this, e);
+        },
+        error: function (xhr) {
+            $.dos.btnUnSpin(btn);
+            return error_callback(xhr);
         }
     });
 
