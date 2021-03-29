@@ -6,7 +6,7 @@ use Modules\Auth;
 <?= view('layouts.header', ['title' => "Anasayfa"]) ?>
 
 <?php
-$username = @Auth::user()['username'];
+$username = @Auth::init()->user()['username'];
 ?>
 
 <div class="mt-4">

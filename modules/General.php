@@ -1,5 +1,7 @@
 <?php
 
+use Modules\ezPDO;
+
 function base_path($url = null)
 {
     return dirname(__DIR__) . $url;
@@ -120,6 +122,10 @@ function middleware($middleware, $callback)
 
 function validator($array, $valid = [])
 {
+    global $db;
+
+    $ezPDO = new ezPDO($db[0]);
+
     $data = [];
     $hard_error = 0;
 
@@ -129,7 +135,6 @@ function validator($array, $valid = [])
 
         if (isset($valid[$key])) {
             $types = $valid[$key];
-
             $e = 1;
 
             foreach ($types as $attr => $type) {
@@ -150,6 +155,17 @@ function validator($array, $valid = [])
                         if (!filter_var($row, FILTER_VALIDATE_EMAIL)) {
                             $hard_error = 1;
                             $errors[] = "$key geçersiz email tipi!";
+                        }
+
+                        break;
+
+                    case "unique":
+
+                        $table = $type[1];
+                        $test = $ezPDO->read("SELECT * FROM $table WHERE $key = ?", [$row]);
+                        if (@$test['id']) {
+                            $hard_error = 1;
+                            $errors[] = "$key benzersiz olmalıdır, bu $key zaten kullanılıyor.";
                         }
 
                         break;

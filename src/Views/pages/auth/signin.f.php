@@ -19,8 +19,8 @@
         <h1 class="h3 mb-3 fw-normal">Giriş yap</h1>
 
         <div class="form-floating">
-            <input type="text" id="email" name="email" class="form-control mt-1" placeholder="E-mail adresi">
-            <label for="email">E-mail adresi</label>
+            <input type="text" id="username" name="username" class="form-control mt-1" placeholder="Kullanıcı adı">
+            <label for="username">Kullanıcı adı</label>
         </div>
         <div class="form-floating">
             <input type="password" id="password" name="password" class="form-control mt-1" placeholder="Şifre">

@@ -7,11 +7,22 @@ use Src\Models\User;
 class Auth
 {
 
+    public static $model;
+
+    public static function init()
+    {
+        self::$model = new User(0);
+
+        return new self();
+    }
+
     public static function check()
     {
         if (session('uid')) {
+            self::user();
             return true;
         }
+
         return false;
     }
 
@@ -21,9 +32,7 @@ class Auth
         if (session('uid'))
             return false;
 
-        $model = new User(0);
-
-        return self::login($model->where($arr)->get()[0] ?? []);
+        return self::login(self::$model->where($arr)->get()[0] ?? []);
 
         return 0;
     }
@@ -46,8 +55,6 @@ class Auth
         if (!session('uid'))
             return false;
 
-        $model = new User(0);
-
-        return $model->where([['id', '=', session('uid')]])->get()[0] ?? false;
+        return self::$model->where([['id', '=', session('uid')]])->get()[0] ?? deleteSession('uid');
     }
 }

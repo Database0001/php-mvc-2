@@ -28,7 +28,7 @@ middleware(guest::class, function () {
 
 middleware(MiddlewareAuth::class, function () {
     Route::get('/auth/logout', function () {
-        Auth::logout();
+        Auth::init()->logout();
         redirect(host('/'));
     });
 });

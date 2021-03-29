@@ -67,7 +67,7 @@ $.dos = {
 
         let last = $([...list.children()].pop());
 
-        last.fadeOut(2500, function () {
+        last.fadeOut(3000, function () {
             this.remove();
         });
 

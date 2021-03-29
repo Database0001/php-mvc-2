@@ -19,7 +19,7 @@ class AuthController
     public function signin()
     {
         $valid = validator(request(), [
-            "email" => ['required', 'email'],
+            "username" => ['required'],
             "password" => ['required']
         ]);
 
@@ -27,7 +27,7 @@ class AuthController
             'response' => 0
         ];
 
-        if (Auth::attempt([['email', "=", $valid['email']], ['password', "=", Crypter::encode($valid['password'])]])) {
+        if (Auth::init()->attempt([['username', "=", $valid['username']], ['password', "=", Crypter::encode($valid['password'])]])) {
             $return['response'] = 1;
         } else {
             $return['message'] = "E-mail veya şifre yanlış.";
@@ -39,8 +39,8 @@ class AuthController
     public function signup()
     {
         $valid = validator(request(), [
-            "username" => ['required'],
-            "email" => ['required', 'email'],
+            "username" => ['required', 'unique:users'],
+            "email" => ['required', 'email', 'unique:users'],
             "password" => ['required']
         ]);
 
@@ -54,7 +54,7 @@ class AuthController
             "password" => Crypter::encode($valid['password'])
         ]);
 
-        Auth::login($user);
+        Auth::init()->login($user);
 
         return response('json', $return);
     }
