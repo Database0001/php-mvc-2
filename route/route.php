@@ -38,5 +38,5 @@ Route::get('/', function () {
 
     $username = @Auth::user()['username'];
 
-    echo "Welcome " . (($username ? $username . " <a href='/auth/logout'>Logout</a>" : null) ?? "Guest") . ".";
+    echo "Hoşgeldin " . (($username ? $username . " <a href='/auth/logout'>Çıkış yap</a>" : null) ?? "Ziyaretçi") . ".";
 });
