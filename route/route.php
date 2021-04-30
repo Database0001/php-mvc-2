@@ -6,11 +6,11 @@ use Modules\Route;
 use Src\Controllers\AuthController;
 use Src\Controllers\ResourceController;
 use Src\Middleware\auth as MiddlewareAuth;
-use Src\Middleware\guest;
+use Src\Middleware\guest as MiddlewareGuest;
 
 // "/" url everytime must set endest. 
 
-middleware(guest::class, function () {
+middleware(MiddlewareGuest::class, function () {
 
     Route::get('/auth/signin', function () {
         return view("pages.auth.signin");
