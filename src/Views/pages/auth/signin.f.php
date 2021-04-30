@@ -1,7 +1,6 @@
 <?= view('layouts.header', ['title' => "Giriş yap"]) ?>
 
 <style>
-
     body {
         display: flex;
         align-items: center;

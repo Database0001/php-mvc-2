@@ -18,7 +18,6 @@ middleware(guest::class, function () {
 
     Route::post('/auth/signin', [AuthController::class, 'signin']);
 
-
     Route::get('/auth/signup', function () {
         return view("pages.auth.signup");
     });

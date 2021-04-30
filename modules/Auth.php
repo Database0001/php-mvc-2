@@ -33,8 +33,6 @@ class Auth
             return false;
 
         return self::login(self::$model->where($arr)->get()[0] ?? []);
-
-        return 0;
     }
 
     public static function login($user = [])
@@ -43,6 +41,8 @@ class Auth
             session(['uid' => $user['id']]);
             return 1;
         }
+
+        return null;
     }
 
     public static function logout()

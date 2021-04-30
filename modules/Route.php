@@ -7,12 +7,13 @@ class Route
 
     static $called = 0;
 
-    
+
     private static function main($url, $callback, $methods = [])
     {
 
         if (self::$called == 1 || !in_array(request('_method') ?? $_SERVER['REQUEST_METHOD'], $methods))
             return;
+
 
         $uri = strtok(strtok(url(), '?'), '#');
 
