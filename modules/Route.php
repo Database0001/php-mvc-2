@@ -58,7 +58,7 @@ class Route
                     abort(500);
             }
 
-            print_r($return);
+            #print_r($return);
             self::$called = 1;
         }
     }
